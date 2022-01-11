@@ -1,4 +1,38 @@
 {% extends 'todo/base.html' %}
 
 {% block content %}
+
+<div
+    class=" bg-gray-800 text-left text-blue-100 max-w-prose mx-auto m-4 px-6 py-4 text-2xl rounded-lg drop-shadow-md hover:bg-gray-900">
+    <div class="mx-auto my-auto">
+        <form class=" ml-2 my-auto font-sans text-base flex w-100 mx-auto" action="/add-todo-item/" method="POST">
+            {% csrf_token %}
+            <input class="text-black rounded-lg p-2 m-2 w-3/4" type="text" name="content">
+            <input
+                class="w-1/5 text-black font-bold rounded-lg m-2 bg-yellow-200 hover:bg-yellow-300 cursor-pointer drop-shadow-xl px-4 py-2"
+                type="submit" value="ADD">
+        </form>
+    </div>
+</div>
+
+{% for todo_item in todo_items %}
+<div
+    class=" bg-gray-800 text-left text-blue-100 max-w-prose mx-auto m-4 px-6 py-4 text-2xl rounded-lg shadow-inherit shadow-xl hover:bg-gray-900">
+    <div class="flex flex-row">
+        <p
+            class="basis-1/5 mr-2 my-auto text-base font-bold font-mono border-2 border-yellow-200 rounded-full px-3 py-1">
+            {{ forloop.counter }}
+        </p>
+        <p class="flex-1 basis-3/5 ml-2 my-auto font-sans">{{ todo_item.content }}</p>
+        <form class="basis-1/5 bg-red-100 my-auto rounded-full" action="/delete-todo-item/{{ todo_item.id }}/"
+            method="POST">
+            {% csrf_token %}
+            <input
+                class="text-red-700 font-bold px-3 py-1 border-2 border-red-700 rounded-full hover:bg-red-200 cursor-pointer"
+                type="submit" value="X">
+        </form>
+    </div>
+</div>
+{% endfor %}
+
 {% endblock content %}
