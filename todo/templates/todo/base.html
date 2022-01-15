@@ -10,10 +10,18 @@
 
     <link rel="stylesheet" href="{% static 'todo/main.css' %}">
 
-    <title>What's New</title>
+    <title>What's Next?</title>
 </head>
 
 <body class="bg-gray-400">
+
+    {% if messages %}
+    {% for message in messages %}
+    <div class="bg-green-100 text-green-900 rounded m-4 p-2 max-w-prose mx-auto">
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
 
     {% block content %}
     {% endblock content %}

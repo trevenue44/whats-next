@@ -1,0 +1,29 @@
+{% extends '../todo/base.html' %}
+{% load tailwind_filters %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div
+    class="bg-gray-800 text-left font-sans text-blue-100 max-w-prose mx-auto m-4 px-6 py-4 text-base rounded-lg drop-shadow-md hover:bg-gray-900">
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset>
+            <div class="border-b-2 p-2 mb-4">
+                <legend class="text-2xl mx-auto w-100 text-center font-mono">Join Now!</legend>
+            </div>
+            {% crispy form %}
+            <div>
+                <button
+                    class="text-blue-100 font-bold rounded-lg my-2 border-2 border-yellow-200 hover:bg-yellow-300 cursor-pointer drop-shadow-xl px-4 py-2 hover:text-gray-900"
+                    type="submit">
+                    SIGN UP
+                </button>
+            </div>
+        </fieldset>
+        <div class="border-t-2 p-2 mt-4">
+            <small class="text-gray-300">Already have an account? <a
+                    class="ml-1 text-yellow-200 underline hover:text-yellow-300" href="#">LOGIN</a></small>
+        </div>
+    </form>
+</div>
+{% endblock content %}
