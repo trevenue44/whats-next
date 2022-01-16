@@ -1,6 +1,9 @@
 # VSCode
 .vscode/
 
+# tailwindcss configuration stuff
+frontend/
+
 # Byte-compiled / optimized / DLL files
 */__pycache__/*
 *.py[cod]
