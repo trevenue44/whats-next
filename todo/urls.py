@@ -1,8 +1,10 @@
+from re import template
 from django.urls import path
 from . import views as todo_views
+from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
-    path("", todo_views.home, name="todo-home"),
+    path("", login_required(todo_views.TodoItemListView.as_view()), name="todo-home"),
     path("add-todo-item/", todo_views.add_todo_item, name="add-todo-item"),
     path(
         "delete-todo-item/<int:todo_item_id>/",
